@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head></head>
+<body>
+<h1>Header</h1>
+
+<div sec:authorize="isAuthenticated()">
+	<h3>Welcome <span sec:authentication="name"></span></h3>
+	
+	<h3><span sec:authentication="principal.authorities"></span></h3>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" class="btn btn-primary" value="Logout"/>
+	</form>
+</div>
+
+<li><a href="/user" sec:authorize="hasAnyAuthority('ADMIN','EDITOR','USER')">Only for User</a></li>
+<li><a href="/user"sec:authorize="hasAnyAuthority('ADMIN','EDITOR','USER')">Only for User</a></li>
+<li><a href="/user" sec:authorize="hasAnyAuthority('ADMIN','EDITOR','USER')">Only for User</a></li>
+
+
+<button class="btn btn-primary" sec:authorize="hasAnyAuthority('ADMIN','EDITOR','USER')">User</button>
+<button class="btn btn-secondary" sec:authorize="hasAnyAuthority('ADMIN','EDITOR','USER')">User</button>
+<button class="btn btn-danger" sec:authorize="hasAnyAuthority('ADMIN','EDITOR','USER')">User</button>
+
+
+
+<li><a href="/editor" sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Only for Editor</a></li>
+<li><a href="/editor" sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Only for Editor</a></li>
+<li><a href="/editor" sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Only for Editor</a></li>
+
+<button class="btn btn-primary" sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Editor</button>
+<button class="btn btn-secondary" sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Editor</button>
+<button class="btn btn-danger" sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Editor</button>
+
+<li><a href="/admin" sec:authorize="hasAuthority('ADMIN')">Only for Admin</a></li>
+<li><a href="/admin" sec:authorize="hasAuthority('ADMIN')">Only for Admin</a></li>
+<li><a href="/admin" sec:authorize="hasAuthority('ADMIN')">Only for Admin</a></li>
+
+<button class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Admin</button>
+<button class="btn btn-secondary" sec:authorize="hasAuthority('ADMIN')">Admin</button>
+<button class="btn btn-danger" sec:authorize="hasAuthority('ADMIN')">Admin</button>
+
+
+<h1>Footer</h1>
+</body>
+</html>
